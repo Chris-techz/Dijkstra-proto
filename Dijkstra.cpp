@@ -16,9 +16,37 @@ void Dijkstra::AfficherGrille()
 	}
 }
 
-void Dijkstra::LireCases()
+Point Dijkstra::LireCases(Point actuel)
 {
+	Point prochainePosition = { 0 };
+	int min = 9;
 
+	c.droite = tableau[actuel.y][actuel.x + 1];				//Lecture des cases adjacentes
+	c.bas = tableau[actuel.y + 1][actuel.x];
+	if (actuel.x - 1 > 0)
+		c.gauche = tableau[actuel.y][actuel.x - 1];
+	if (actuel.y - 1 > 0)
+		c.haut = tableau[actuel.y - 1][actuel.x];
+
+	
+	if (min > c.droite) {									// Choix de la prochaine position
+		min = c.droite;
+		prochainePosition = { actuel.y, actuel.x + 1 };
+	}
+	if (min > c.bas) {
+		min = c.bas;
+		prochainePosition = { actuel.y + 1, actuel.x };
+	}
+	if (min > c.gauche) {
+		min = c.gauche;
+		prochainePosition = { actuel.y, actuel.x - 1 };
+	}
+	if (min > c.haut) {
+		min = c.haut;
+		prochainePosition = { actuel.y - 1, actuel.x };
+	}
+
+	return prochainePosition;
 }
 
 void Dijkstra::ModifierPoid()
@@ -39,13 +67,17 @@ void Dijkstra::ModifierPoid()
 
 void Dijkstra::Calcul()
 {
-	Point positionActuelle;
-	Point positionSuivante;
+	Point positionActuelle = { 0 };
+	Point positionSuivante = { 0 };
 	bool found = false;
 
-	do 
-	{
+	positionSuivante = LireCases(positionActuelle);
+	Avancer();
 
 
-	} while (found != true);
+}
+
+void Dijkstra::Avancer()
+{
+
 }

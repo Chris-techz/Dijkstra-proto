@@ -1,13 +1,11 @@
 #include "Dijkstra.h"
 
-
-int main()
+int main(int argc, char* argv[])
 {
 	Dijkstra obj;
-	obj.Scan();
+	obj.AfficherGrille();
+	obj.ModifierPoid();
+	obj.AfficherGrille();
 
-
-	std::system("PAUSE");
 	return 0;
-
 }

@@ -16,19 +16,20 @@ struct Case							//Case adjacentes de la position actuelle
 
 struct Point						//Coordonnées X, Y
 {
-	int x,
-		y;						
+	int y,
+		x;						
 };
 
 class Dijkstra
 {
 private:
 	Case c;					//initialisé au poid maximum
+	int tic = 0;
 	Point objectif = {2, 3};
 	int tableau[MAX][MAX] = {		//3 = case libre
 		{ 3, 3, 3, 3, 3 },			//9 = mur (poid max)
-		{ 9, 3, 3, 9, 3 },			//1 = objectif
-		{ 9, 9, 3, 9, 9 },			//Départ : X, Y = 0
+		{ 9, 9, 9, 9, 3 },			//1 = objectif
+		{ 9, 9, 3, 9, 3 },			//Départ : X, Y = 0
 		{ 9, 3, 1, 3, 3 },
 		{ 3, 3, 3, 3, 9 }
 	};
@@ -38,7 +39,7 @@ public:
 	void Calcul();									//Dijkstra
 	Point LireCases(Point positionActuelle);		//Voir les noeuds suivant poid du trajet
 	void ModifierPoid();							//Modifie le poid en fonction des coordonnées de l'objectif
-	void Avancer();									//Passe à la position suivante
+	void Avancer(Point positionSuivante);									//Passe à la position suivante
 };
 
 #endif DIJKSTRA_H
